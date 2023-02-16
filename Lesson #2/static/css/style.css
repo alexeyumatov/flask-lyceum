@@ -19,3 +19,24 @@ header h4 {
     padding: 10px 10px 10px 15px;
     margin:12px
 }
+
+.login-head-info img {
+    float: left;
+    padding: 0 20px 20px 0;
+}
+
+.login-head-info h2 {
+    padding-top: 10px;
+}
+
+.login-form{
+    margin-top: 40px;
+}
+
+.login-field {
+    margin-bottom: 10px;
+}
+
+.success {
+    text-align: center;
+}

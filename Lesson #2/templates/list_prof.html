@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2 align="center">Список профессий</h2>
+    {% if type_list == 'ol' %}
+        <ol>
+            {% for prof in profs %}
+                <li>{{ prof }}</li>
+            {% endfor %}
+        </ol>
+    {% elif type_list == 'ul' %}
+        <ul>
+            {% for prof in profs %}
+                <li>{{ prof }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <div class="param-error"><p>Вы ввели неправельный параметр!</p></div>
+    {% endif %}
+{% endblock %}

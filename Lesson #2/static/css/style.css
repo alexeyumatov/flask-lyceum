@@ -40,3 +40,14 @@ header h4 {
 .success {
     text-align: center;
 }
+
+.distribution-header {
+    position: relative;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.crew-list {
+    position: absolute;
+    left: 40%;
+}

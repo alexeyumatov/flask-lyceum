@@ -29,7 +29,7 @@ header h4 {
     padding-top: 10px;
 }
 
-.login-form{
+.login-form {
     margin-top: 40px;
 }
 
@@ -41,7 +41,7 @@ header h4 {
     text-align: center;
 }
 
-.distribution-header {
+.distribution-header, .tbl-page-head {
     position: relative;
     text-align: center;
     padding-bottom: 30px;
@@ -50,4 +50,18 @@ header h4 {
 .crew-list {
     position: absolute;
     left: 40%;
+}
+
+.tbl-page-table th {
+    background: gray;
+    text-align: center;
+}
+
+.tbl-page-table td {
+    width: 20%;
+    text-align: center;
+}
+
+.tbl-page-table img {
+    width: 20%;
 }

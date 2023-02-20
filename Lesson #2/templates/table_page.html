@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2 class="tbl-page-head">Оформление каюты</h2>
+    <table class="tbl-page-table">
+        <tr>
+            <th>Цвет стен</th>
+            <th>Экипаж</th>
+        </tr>
+        <tr>
+            {% if age < 21 %}
+                {% if sex == 'female' %}
+                    <td style="background: rgb(255, 160, 122)"></td>
+                {% elif sex == 'male' %}
+                    <td style="background: rgb(176, 196, 222);"></td>
+                {% endif %}
+                <td><img src="/static/img/baby-alien.png" alt="baby-alien"></td>
+
+            {% elif age >= 21 %}
+                {% if sex == 'female' %}
+                    <td style="background: rgb(255, 69, 0);"></td>
+                {% elif sex == 'male' %}
+                    <td style="background: rgb(0, 127, 240)"></td>
+                {% endif %}
+                 <td><img src="/static/img/alien.png" alt="alien"></td>
+            {% endif %}
+        </tr>
+    </table>
+{% endblock %}

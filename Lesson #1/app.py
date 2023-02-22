@@ -1,4 +1,4 @@
-from flask import Flask, url_for, request
+from flask import Flask, url_for, request, redirect
 
 app = Flask(__name__)
 
@@ -55,10 +55,44 @@ def promotion():
 </html>"""
 
 
-@app.route('/astronaut_selection', methods=['POST', 'GET'])
-def astronaut_selection():
-    if request.method == 'GET':
-        return """"""
+@app.route('/choice/unavailable-planet')
+def show_planet():
+    return "Данную планету мы не колонизируем :("
+
+
+@app.route('/choice/<string:planet>', methods=['GET', 'POST'])
+def choice(planet: str):
+    if planet.lower() == 'марс':
+        return f"""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Варианты выбора</title>
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+    crossorigin="anonymous">
+</head>
+<body>
+    <h1>Мое предложение: {planet}</h1>
+    <h3>Эта планета близка к Земле;</h3>
+    <div class="alert alert-success" role="alert">
+        На ней много необходимых ресурсов;
+    </div>
+    <div class="alert alert-dark" role="alert">
+        На ней есть вода и атмосфера;
+    </div>
+    <div class="alert alert-warning" role="alert">
+        На ней есть небольшое магнитное поле;
+    </div>
+    <div class="alert alert-danger" role="alert">
+        Наконец, она просто красива!
+    </div>
+</body>
+</html>"""
+    else:
+        return redirect('/choice/unavailable-planet')
 
 
 if __name__ == '__main__':

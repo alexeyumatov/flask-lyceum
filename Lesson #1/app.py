@@ -95,5 +95,32 @@ def choice(planet: str):
         return redirect('/choice/unavailable-planet')
 
 
+@app.route('/results/<nickname>/<int:level>/<float:rating>')
+def result(nickname, level, rating):
+    return f"""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Результаты</title>
+    <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+    crossorigin="anonymous">
+</head>
+<body>
+    <h1>Результаты отбора</h1>
+    <h2>Претендента на участие в миссии {nickname}:</h2>
+    <div class="alert alert-success" role="alert">
+        <h3>Поздравляем! Ваш рейтинг после {level} этапа отбора составляет {rating}!</h3>
+    </div>
+    <div class="alert alert-warning" role="alert">
+        <h3>Желаем удачи!</h3>
+    </div>
+</body>
+</html>"""
+
+
+
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')

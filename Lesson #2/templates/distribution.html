@@ -5,7 +5,7 @@
     </div>
     <div class="crew-list">
         {% for person in crew %}
-            <p>{{ person }} - Каюта №{{ loop.index }} {% if loop.first %} - капитан коробля {% endif %}</p>
+            <p>{{ person }}{{ loop.index }} {% if loop.first %} - капитан коробля {% endif %}</p>
         {% endfor %}
     </div>
 {% endblock %}

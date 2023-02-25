@@ -48,7 +48,7 @@ def success():
 
 @app.route('/distribution')
 def distribution():
-    crew = ['Ридли Скотт', 'Энди Уир', 'Марк Уотни', 'Шон Бин']
+    crew = ['Ридли Скотт - Каюта №', 'Энди Уир - Каюта №', 'Марк Уотни - Каюта №', 'Шон Бин - Каюта №']
     return render_template('distribution.html', title='Размещение по каютам', crew=crew)
 
 

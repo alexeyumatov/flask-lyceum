@@ -1,6 +1,8 @@
-from requests import delete
+from requests import post
 
-print(delete('http://127.0.0.1:5000//api/news/999').json())
-# новости с id = 999 нет в базе
-
-print(delete('http://127.0.0.1:5000//api/news/1').json())
+print(post('http://127.0.0.1/api/jobs',
+           json={'team_leader': 1,
+                 'job': 'test123',
+                 'work_size': 15,
+                 'collaborators': '1, 4',
+                 'is_finished': False}).json())

@@ -1,4 +1,5 @@
-from flask_restful import Resource, abort
+from flask import jsonify
+from flask_restful import Resource, abort, reqparse
 from .users import User
 from . import db_session
 
@@ -27,6 +28,12 @@ class UsersResource(Resource):
         return jsonify({'success': 'OK'})
 
 
+parser = reqparse.RequestParser()
+parser.add_argument('name', required=True)
+parser.add_argument('about', required=True)
+parser.add_argument('email', required=True)
+
+
 class UsersListResource(Resource):
     def get(self):
         session = db_session.create_session()
@@ -37,7 +44,7 @@ class UsersListResource(Resource):
     def post(self):
         args = parser.parse_args()
         session = db_session.create_session()
-        user = users.User(
+        user = User(
             name=args["name"],
             about=args["about"],
             email=args["email"]

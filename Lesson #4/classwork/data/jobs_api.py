@@ -4,7 +4,6 @@ from flask import jsonify, request
 from . import db_session
 from .jobs import Jobs
 
-
 blueprint = flask.Blueprint(
     'jobs_api',
     __name__,
@@ -68,5 +67,20 @@ def delete_job(task_id):
     if not job:
         return jsonify({'error': 'Not found'})
     db_sess.delete(job)
+    db_sess.commit()
+    return jsonify({'success': 'OK'})
+
+
+@blueprint.route('/api/jobs/<int:task_id>', methods=["PUT"])
+def edit_job(task_id):
+    db_sess = db_session.create_session()
+    if not request.json:
+        return jsonify({'error': 'Empty request'})
+    required_keys = ['task_id', 'team_leader', 'job', 'work_size', 'start_date',
+                     'end_date', 'collaborators', 'is_finished']
+    for key in request.json:
+        if key not in required_keys:
+            return jsonify({'error': 'Bad request'})
+    db_sess.query(Jobs).filter(Jobs.task_id == task_id).update(request.json)
     db_sess.commit()
     return jsonify({'success': 'OK'})

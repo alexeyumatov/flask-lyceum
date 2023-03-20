@@ -1,14 +1,39 @@
-from requests import put, get
+from requests import put, get, post, delete
 
-print('Task #1 get -\t', get('http://127.0.0.1:5000/api/jobs/1').json())
+# GET REQUESTS
 
-print('Successful put -\t', put('http://127.0.0.1:5000/api/jobs/1', json={'job': 'Edited task #1', 'work_size': 15,
-                                                                          'collaborators': '1, 2, 4, 7'}).json())
+print('Get request \t-\t', get('http://127.0.0.1:5000/api/users').json())
 
-print('Edited Task #1 get -\t', get('http://127.0.0.1:5000/api/jobs/1').json())
+print('Get one item \t-\t', get('http://127.0.0.1:5000/api/users/1').json())
 
-print('Empty request -\t', put('http://127.0.0.1:5000/api/jobs/1', json={}).json())
+print('Wrong get request \t-\t', get('http://127.0.0.1:5000/api/users/123').json(), '\n\n')
 
-print('Bad request (param "work_size" is misspelled) -\t', put('http://127.0.0.1:5000/api/jobs/1',
-                                                               json={'job': 'Wrong Request',
-                                                                     'work_sze': 1}).json())
+# PUT REQUESTS
+print('Wrong put request (param "email" is misspelled) \t-\t',
+      put('http://127.0.0.1:5000/api/users/1', json={'emil': 'alex@ya.ru'}).json())
+
+print('Empty put request \t-\t', put('http://127.0.0.1:5000/api/users/1', json={}).json())
+
+print('Edit user email \t-\t', put('http://127.0.0.1:5000/api/users/1', json={'email': 'alex@ya.ru'}).json())
+
+print('Checking updates \t-\t', get('http://127.0.0.1:5000/api/users/1').json(), '\n\n')
+
+# POST REQUESTS
+print('Empty post request \t-\t', post('http://127.0.0.1:5000/api/users', json={}).json())
+
+print('Wrong post request \t-\t', post('http://127.0.0.1:5000/api/users', json={'id': 4,
+                                                                                'name': 'Dylan'}).json())
+
+print('Post request \t-\t', post('http://127.0.0.1:5000/api/users', json={'id': 4,
+                                                                          'name': 'Dylan',
+                                                                          'about': 'My name is Dylan. Hi!',
+                                                                          'email': 'DylanDylan@gmail.com'}).json())
+
+print('Checking updates \t-\t', get('http://127.0.0.1:5000/api/users/4').json(), '\n\n')
+
+# DELETE REQUESTS
+print('Wrong delete request \t-\t', delete('http://127.0.0.1:5000/api/users/1313').json())
+
+print('Delete request \t-\t', delete('http://127.0.0.1:5000/api/users/2').json())
+
+print('Checking updates \t-\t', get('http://127.0.0.1:5000/api/users').json())
